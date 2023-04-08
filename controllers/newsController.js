@@ -1,6 +1,6 @@
 import axios from 'axios';
-import News from '../models/newsModel';
-import Users from '../models/userModel';
+import News from '../models/newsModel.js';
+import Users from '../models/userModel.js';
 
 const NewsController = (app) => {
     app.get('/api/search', searchNews);

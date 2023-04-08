@@ -1,6 +1,6 @@
-import Users from "../models/userModel";
+import Users from "../models/userModel.js";
 import createToken from '../utils/tokenManager.js';
-import verifyToken from '../middlewares/auth.js';
+import { verifyToken } from '../middlewares/auth.js';
 
 
 const UserController = (app) => {
@@ -46,7 +46,7 @@ const login = async (req, res) => {
             lastName: user.lastName,
             name: user.name,
             email: user.email,
-            token: createToken(user._id),
+            token: createToken(user._id, user.username, user.role),
         })
     } else {
         res.status(401)

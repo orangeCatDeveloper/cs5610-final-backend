@@ -7,4 +7,4 @@ const createToken = ({ id, username, role }) =>
         expiresIn: '2h'
     })
 
-export default generateToken
+export default createToken;

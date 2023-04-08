@@ -19,7 +19,7 @@ const schema = mongoose.Schema(
     }, { collection: 'users' });
 
 
-const usersModel = mongoose
+const userModel = mongoose
     .model('UserModel', schema);
 
 export default userModel;

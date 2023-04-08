@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose, { Schema } from 'mongoose';
 const schema = mongoose.Schema(
     {
         newsID: { type: Schema.Types.ObjectId, ref: "NewsModel" },

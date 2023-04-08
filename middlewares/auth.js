@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 
-const verifyToken = (req, res, next) => {
+export const verifyToken = (req, res, next) => {
     const token =
         req.body.token || req.query.token || req.headers["x-access-token"];
 
@@ -15,4 +15,20 @@ const verifyToken = (req, res, next) => {
     return next();
 };
 
-export default verifyToken;
+export const isAdmin = (req, res, next) => {
+    if (req.user && req.user.role === "admin") {
+        next()
+    } else {
+        res.status(401)
+        throw new Error('User is not an admin')
+    }
+}
+
+export const isCreator = (req, res, next) => {
+    if (req.user && req.user.role === "creator") {
+        next()
+    } else {
+        res.status(401)
+        throw new Error('User is not an admin')
+    }
+}

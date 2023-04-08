@@ -15,12 +15,7 @@ const schema = mongoose.Schema(
             type: String,
             required: true,
         },
-        email: String,
-        avatar: {
-            type: String,
-            default:
-                "https://firebaspot.com/o/images%2Fdefault-avatar.jpeg?alt=media&token=4c5d0224-e530-4d60-b03a-f56251460ee2"
-        }
+        email: String
     }, { collection: 'users' });
 
 

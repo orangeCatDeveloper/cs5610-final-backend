@@ -13,4 +13,4 @@ const schema = mongoose.Schema(
 const reviewModel = mongoose
     .model('ViewModel', schema);
 
-export default commentModel;
+export default reviewModel;

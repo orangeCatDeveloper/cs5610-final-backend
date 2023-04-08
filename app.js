@@ -28,6 +28,7 @@ app.use(cors());
 UserController(app);
 NewsController(app);
 BookmarkController(app);
+ReviewController(app);
 
 
 // catch 404 and forward to error handler

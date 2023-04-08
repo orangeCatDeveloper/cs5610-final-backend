@@ -2,6 +2,7 @@ import Review from '../models/reviewModel';
 
 const ReviewController = (app) => {
     app.post("api/user/:uid/review/:nid", createReview);
+    app.get("api/user/:uid/review", getMyReviews);
 }
 
 const createReview = async (req, res) => {
@@ -15,5 +16,14 @@ const createReview = async (req, res) => {
     }
 }
 
+const getMyReviews = async (req, res) => {
+    const { uid } = req.params;
+    try {
+        const reviews = await Review.find({ postedBy: uid }).populate('newsID');
+        res.status(200).json(reviews);
+    } catch (err) {
+        res.status(500).json({ message: "Error retrieving reviews" });
+    }
+}
 
 export default ReviewController;

@@ -15,8 +15,8 @@ export const verifyToken = (req, res, next) => {
     return next();
 };
 
-export const isAdmin = (req, res, next) => {
-    if (req.user && req.user.role === "admin") {
+export const verifyAdmin = (req, res, next) => {
+    if (req.user && req.user.username === "admin") {
         next()
     } else {
         res.status(401)
@@ -24,11 +24,11 @@ export const isAdmin = (req, res, next) => {
     }
 }
 
-export const isCreator = (req, res, next) => {
+export const verifyCreator = (req, res, next) => {
     if (req.user && req.user.role === "creator") {
         next()
     } else {
         res.status(401)
-        throw new Error('User is not an admin')
+        throw new Error('User is not a creator')
     }
 }

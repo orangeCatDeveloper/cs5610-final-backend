@@ -36,7 +36,7 @@ const register = async (req, res) => {
 }
 
 const login = async (req, res) => {
-    const { username, password } = req.body
+    const { username, password, role } = req.body
     const user = await User.findOne({ username })
     password = await bcrypt.hash(password, 11);
     if (user && (await user.matchPassword(password))) {
@@ -46,7 +46,7 @@ const login = async (req, res) => {
             lastName: user.lastName,
             name: user.name,
             email: user.email,
-            token: createToken(user._id, user.username, user.role),
+            token: createToken(user._id, user.username, role),
         })
     } else {
         res.status(401)

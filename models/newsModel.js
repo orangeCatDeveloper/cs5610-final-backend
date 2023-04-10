@@ -15,7 +15,7 @@ const schema = mongoose.Schema(
         },
         image: {
             type: String,
-            default: ""
+            default: "https://www.northeastern.edu/graduate/wp-content/uploads/2016/08/IMG_9623-1.jpg"
         },
         publishedAt: {
             type: String,
@@ -23,7 +23,7 @@ const schema = mongoose.Schema(
         },
         url: {
             type: String,
-            default: "https://www.northeastern.edu/graduate/wp-content/uploads/2016/08/IMG_9623-1.jpg"
+            default: ""
         },
         content: {
             type: String,

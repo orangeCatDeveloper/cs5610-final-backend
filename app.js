@@ -13,10 +13,10 @@ import cookieParser from 'cookie-parser';
 import mongoose from 'mongoose';
 
 dotenv.config();
-const corsOptions ={
-  origin:'http://localhost:3000', 
-  credentials:true,            //access-control-allow-credentials:true
-  optionSuccessStatus:200
+const corsOptions = {
+  origin: process.env.REACT_APP,
+  credentials: true,            //access-control-allow-credentials:true
+  optionSuccessStatus: 200
 }
 const CONNECTION_STRING = process.env.DB_CONNECTION_STRING;
 mongoose.connect(CONNECTION_STRING);

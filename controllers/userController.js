@@ -39,6 +39,7 @@ const register = async (req, res) => {
 
 const login = async (req, res) => {
     const { username, password, role } = req.body
+    console.log(username)
     const user = await Users.findOne({ username, password });
     if (user) {
         res.json({
@@ -51,7 +52,7 @@ const login = async (req, res) => {
         })
     } else {
         res.status(401)
-        throw new Error('Invalid username or password')
+        res.json("Invalid username or password")
     }
 }
 

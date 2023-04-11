@@ -12,8 +12,12 @@ import express from 'express';
 import cookieParser from 'cookie-parser';
 import mongoose from 'mongoose';
 
-
 dotenv.config();
+const corsOptions ={
+  origin:'http://localhost:3000', 
+  credentials:true,            //access-control-allow-credentials:true
+  optionSuccessStatus:200
+}
 const CONNECTION_STRING = process.env.DB_CONNECTION_STRING;
 mongoose.connect(CONNECTION_STRING);
 
@@ -22,13 +26,11 @@ var app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-
-app.use(cors());
+app.use(cors(corsOptions));
 
 UserController(app);
 NewsController(app);
 BookmarkController(app);
 ReviewController(app);
-
 
 app.listen(process.env.PORT || 4000);

@@ -4,17 +4,10 @@ const schema = mongoose.Schema(
         username: String,
         password: {
             type: String,
-            required: true,
-            default: `testpassword${Date.now()}`
+            default: `123`
         },
-        firstName: {
-            type: String,
-            required: true,
-        },
-        lastName: {
-            type: String,
-            required: true,
-        },
+        firstName: String,
+        lastName: String,
         email: String
     }, { collection: 'users' });
 

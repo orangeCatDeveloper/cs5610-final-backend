@@ -9,6 +9,8 @@ const UserController = (app) => {
     app.get('/api/users/:uid', findUserById);
     app.put('/api/users/:uid', verifyToken, updateUser);
     app.get('/api/users', findAllUsers);
+    app.delete('/api/user/:uid', deleteUserById);
+    app.delete('/api/user', deleteAllUsers);
 }
 
 const register = async (req, res) => {
@@ -62,5 +64,10 @@ const updateUser = async (req, res) =>
 const findUserById = async (req, res) =>
     Users.findById(req.params.uid).then(user => res.json(user));
 
+const deleteUserById = async (req, res) =>
+    Users.deleteOne({ _id: req.params.uid }).then(status => res.send(status));
+
+const deleteAllUsers = async (req, res) =>
+    Users.deleteMany({}).then(status => res.send(status));
 
 export default UserController;

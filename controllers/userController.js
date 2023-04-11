@@ -13,6 +13,7 @@ const UserController = (app) => {
 
 const register = async (req, res) => {
     try {
+        console.log("Hi");
         const { username, firstName, lastName, password, email } = req.body;
         if (!(username && password && firstName && lastName && email)) {
             res.status(400).send("Missing information");
@@ -21,25 +22,26 @@ const register = async (req, res) => {
         if (existingUser) {
             return res.status(409).send("User Already Exist");
         }
-        encryptedPassword = await bcrypt.hash(password, 11);
-        const user = await User.create({
+        console.log("cat");
+        const user = await Users.create({
+            username,
+            password,
             firstName,
             lastName,
-            username,
             email,
-            password: encryptedPassword,
         });
+        console.log("dog");
         res.status(201).json(user);
     } catch (err) {
+        console.log(err);
         res.status(500).send("Server error");
     }
 }
 
 const login = async (req, res) => {
     const { username, password, role } = req.body
-    const user = await User.findOne({ username })
-    password = await bcrypt.hash(password, 11);
-    if (user && (await user.matchPassword(password))) {
+    const user = await Users.findOne({ username, password });
+    if (user) {
         res.json({
             _id: user._id,
             firstName: user.firstName,

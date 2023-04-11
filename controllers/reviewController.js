@@ -3,7 +3,7 @@ import { verifyToken } from '../middlewares/auth.js';
 const ReviewController = (app) => {
     app.post("/api/user/:uid/review/:nid", verifyToken, createReview);
     app.get("/api/user/:uid/review", getMyReviews);
-    app.get("/api/news/:nid/reviews", getReviewsForNews);
+    app.get("/api/news/:nid/review", getReviewsForNews);
 }
 
 const createReview = async (req, res) => {
@@ -13,6 +13,7 @@ const createReview = async (req, res) => {
         const review = await Review.create({ newsID: nid, postedBy: uid, content });
         res.status(201).json(review);
     } catch (err) {
+        console.log(err);
         res.status(500).json({ message: "Error creating review" });
     }
 }
@@ -23,6 +24,7 @@ const getMyReviews = async (req, res) => {
         const reviews = await Review.find({ postedBy: uid }).populate('newsID');
         res.status(200).json(reviews);
     } catch (err) {
+        console.log(err);
         res.status(500).json({ message: "Error retrieving reviews" });
     }
 }
@@ -33,6 +35,7 @@ const getReviewsForNews = async (req, res) => {
         const reviews = await Review.find({ newsID: nid }).populate('postedBy');
         res.status(200).json(reviews);
     } catch (err) {
+        console.log(err);
         res.status(500).json({ message: "Error retrieving reviews" });
     }
 }

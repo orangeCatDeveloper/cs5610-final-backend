@@ -13,7 +13,6 @@ const UserController = (app) => {
 
 const register = async (req, res) => {
     try {
-        console.log("Hi");
         const { username, firstName, lastName, password, email } = req.body;
         if (!(username && password && firstName && lastName && email)) {
             res.status(400).send("Missing information");
@@ -22,7 +21,6 @@ const register = async (req, res) => {
         if (existingUser) {
             return res.status(409).send("User Already Exist");
         }
-        console.log("cat");
         const user = await Users.create({
             username,
             password,
@@ -30,7 +28,6 @@ const register = async (req, res) => {
             lastName,
             email,
         });
-        console.log("dog");
         res.status(201).json(user);
     } catch (err) {
         console.log(err);

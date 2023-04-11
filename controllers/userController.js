@@ -50,8 +50,7 @@ const login = async (req, res) => {
             token: createToken(user._id, user.username, role),
         })
     } else {
-        res.status(401)
-        throw new Error('Invalid username or password')
+        res.status(401).json('Invalid username or password');
     }
 }
 

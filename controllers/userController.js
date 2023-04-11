@@ -4,8 +4,8 @@ import { verifyToken } from '../middlewares/auth.js';
 
 
 const UserController = (app) => {
-    app.post("api/register", register);
-    app.post("api/login", login);
+    app.post("/api/register", register);
+    app.post("/api/login", login);
     app.get('/api/users/:uid', findUserById);
     app.put('/api/users/:uid', verifyToken, updateUser);
     app.get('/api/users', findAllUsers);

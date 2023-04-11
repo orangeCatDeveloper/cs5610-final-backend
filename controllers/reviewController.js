@@ -1,9 +1,9 @@
 import Review from '../models/reviewModel.js';
 import { verifyToken } from '../middlewares/auth.js';
 const ReviewController = (app) => {
-    app.post("api/user/:uid/review/:nid", verifyToken, createReview);
-    app.get("api/user/:uid/review", getMyReviews);
-    app.get("api/news/:nid/reviews", getReviewsForNews);
+    app.post("/api/user/:uid/review/:nid", verifyToken, createReview);
+    app.get("/api/user/:uid/review", getMyReviews);
+    app.get("/api/news/:nid/reviews", getReviewsForNews);
 }
 
 const createReview = async (req, res) => {

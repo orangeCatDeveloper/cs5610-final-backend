@@ -10,7 +10,7 @@ const NewsController = (app) => {
     app.get('/api/news/:nid', findNewsById);
     app.delete('/api/news/:nid', deleteNewsById);
     app.delete('/api/news', deleteAllNews);
-    app.put('api/news/:nid', updateNewsById);
+    app.put('/api/news/:nid', updateNewsById);
 }
 
 const searchNews = async (req, res) => {

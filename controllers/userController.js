@@ -9,8 +9,8 @@ const UserController = (app) => {
     app.get('/api/users/:uid', findUserById);
     app.put('/api/users/:uid', verifyToken, updateUser);
     app.get('/api/users', findAllUsers);
-    app.delete('/api/user/:uid', deleteUserById);
-    app.delete('/api/user', deleteAllUsers);
+    app.delete('/api/users/:uid', deleteUserById);
+    app.delete('/api/users', deleteAllUsers);
 }
 
 const register = async (req, res) => {
@@ -51,8 +51,7 @@ const login = async (req, res) => {
             token: createToken(user._id, user.username, role),
         })
     } else {
-        res.status(401)
-        res.json("Invalid username or password")
+        res.status(401).json('Invalid username or password');
     }
 }
 

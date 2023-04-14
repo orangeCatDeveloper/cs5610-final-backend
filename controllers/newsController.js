@@ -5,7 +5,7 @@ import Users from '../models/userModel.js';
 const NewsController = (app) => {
     app.get('/api/search', searchNews);
     app.post('/api/save', saveNews);
-    app.post('/api/user/:uid/news/:nid', createNewsByUser);
+    app.post('/api/user/:uid/news', createNewsByUser);
     app.get('/api/news', findAllNews);
     app.get('/api/news/:nid', findNewsById);
     app.delete('/api/news/:nid', deleteNewsById);
@@ -53,7 +53,7 @@ const saveNews = async (req, res) => {
 
 const createNewsByUser = async (req, res) => {
     const { title, description, content } = req.body;
-    const user = Users.findById(req.params.uid);
+    const user = await Users.findById(req.params.uid);
     News.create({
         author: user.username,
         title,

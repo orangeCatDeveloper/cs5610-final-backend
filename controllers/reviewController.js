@@ -1,4 +1,4 @@
-import Review from '../models/reviewModel.js';
+import Reviews from '../models/reviewModel.js';
 import { verifyToken } from '../middlewares/auth.js';
 const ReviewController = (app) => {
     app.post("/api/user/:uid/review/:nid", verifyToken, createReview);
@@ -10,8 +10,8 @@ const createReview = async (req, res) => {
     const { uid, nid } = req.params;
     const { content } = req.body;
     try {
-        const review = await Review.create({ newsID: nid, postedBy: uid, content });
-        res.status(201).json(review);
+        const newReview = await Reviews.create({ newsID: nid, postedBy: uid, content });
+        res.status(201).json(newReview);
     } catch (err) {
         console.log(err);
         res.status(500).json({ message: "Error creating review" });
@@ -21,8 +21,8 @@ const createReview = async (req, res) => {
 const getMyReviews = async (req, res) => {
     const { uid } = req.params;
     try {
-        const reviews = await Review.find({ postedBy: uid }).populate('newsID');
-        res.status(200).json(reviews);
+        const myReviews = await Reviews.find({ postedBy: uid }).populate('newsID');
+        res.status(200).json(myReviews);
     } catch (err) {
         console.log(err);
         res.status(500).json({ message: "Error retrieving reviews" });
@@ -32,8 +32,8 @@ const getMyReviews = async (req, res) => {
 const getReviewsForNews = async (req, res) => {
     const { nid } = req.params;
     try {
-        const reviews = await Review.find({ newsID: nid }).populate('postedBy');
-        res.status(200).json(reviews);
+        const allReviews = await Reviews.find({ newsID: nid }).populate('postedBy');
+        res.status(200).json(allReviews);
     } catch (err) {
         console.log(err);
         res.status(500).json({ message: "Error retrieving reviews" });

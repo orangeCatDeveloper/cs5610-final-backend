@@ -1,8 +1,8 @@
 import Bookmark from '../models/bookmarkModel.js';
 
 const BookmarkController = (app) => {
-    app.put("/api/user/:uid/bookmark/:nid", updateBookmark);
     app.get("/api/user/:uid/bookmark/:nid", getBookmark);
+    app.put("/api/user/:uid/bookmark/:nid", updateBookmark);
 }
 
 const getBookmark = async (req, res) => {

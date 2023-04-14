@@ -7,6 +7,6 @@ const schema = mongoose.Schema(
 
 
 const bookmarkModel = mongoose
-    .model('CommentModel', schema);
+    .model('bookmarkModel', schema);
 
 export default bookmarkModel;

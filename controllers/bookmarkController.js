@@ -2,6 +2,7 @@ import Bookmark from '../models/bookmarkModel.js';
 
 const BookmarkController = (app) => {
     app.get("/api/user/:uid/bookmark/:nid", getBookmark);
+    app.get("/api/user/:uid/bookmark", getAllBookmark);
     app.put("/api/user/:uid/bookmark/:nid", updateBookmark);
 }
 
@@ -27,6 +28,16 @@ const updateBookmark = async (req, res) => {
         res.status(200).json(true);
     } catch (err) {
         res.status(500).json({ message: "Error registering bookmark" });
+    }
+}
+
+const getAllBookmark = async (req, res) => {
+    const {uid} = req.params;
+    try {
+        const bookmark = await Bookmark.find({ postedBy: uid});
+        res.status(200).json(bookmark);
+    } catch (err) {
+        res.status(500).json({ message: "Error retrieving bookmark" });
     }
 }
 

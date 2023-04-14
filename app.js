@@ -18,7 +18,7 @@ const corsOptions = {
   credentials: true,            //access-control-allow-credentials:true
   optionSuccessStatus: 200
 }
-const CONNECTION_STRING = process.env.DB_CONNECTION_STRING;
+const CONNECTION_STRING = process.env.DB_CONNECTION_STRING1;
 mongoose.connect(CONNECTION_STRING);
 
 var app = express();

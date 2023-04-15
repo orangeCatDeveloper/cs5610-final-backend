@@ -8,6 +8,7 @@ import ReviewController
   from "./controllers/reviewController.js";
 import BookmarkController
   from "./controllers/bookmarkController.js";
+import FollowingController from './controllers/followingController.js';
 import express from 'express';
 import cookieParser from 'cookie-parser';
 import mongoose from 'mongoose';
@@ -32,5 +33,6 @@ UserController(app);
 NewsController(app);
 BookmarkController(app);
 ReviewController(app);
+FollowingController(app);
 
 app.listen(process.env.PORT || 4000);

@@ -17,6 +17,8 @@ const getFollowing = async (req, res) => {
 
 const updateFollowing = async (req, res) => {
     const { followerid, followeeid } = req.params;
+    console.log(followerid);
+    console.log(followeeid);
     try {
         const isFollowing = await Following.findOne({ follower: followerid, followee: followeeid });
         if (isFollowing) {

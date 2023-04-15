@@ -4,6 +4,7 @@ const ReviewController = (app) => {
     app.post("/api/user/:uid/review/:nid", verifyToken, createReview);
     app.get("/api/user/:uid/review", getMyReviews);
     app.get("/api/news/:nid/review", getReviewsForNews);
+    app.delete("/api/user/:uid/review/:nid", deleteReview);
 }
 
 const createReview = async (req, res) => {
@@ -15,6 +16,17 @@ const createReview = async (req, res) => {
     } catch (err) {
         console.log(err);
         res.status(500).json({ message: "Error creating review" });
+    }
+}
+
+const deleteReview = async (req, res) => {
+    const { uid, nid } = req.params;
+    try {
+        const deleteStatus = await Reviews.deleteOne({ newsID: nid, postedBy: uid });
+        res.status(200).json(deleteStatus ? true : false);
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({ message: "Error deleting review" });
     }
 }
 

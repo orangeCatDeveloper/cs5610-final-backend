@@ -39,7 +39,6 @@ const register = async (req, res) => {
 
 const login = async (req, res) => {
     const { username, password, role } = req.body
-    console.log(username)
     const user = await Users.findOne({ username, password });
     if (user) {
         res.json({

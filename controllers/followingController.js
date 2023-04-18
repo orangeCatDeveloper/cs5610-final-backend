@@ -18,9 +18,9 @@ const isFollowing = async (req, res) => {
 }
 
 const getFollowings = async (req, res) => {
-    const {followerid} = req.params;
+    const { followerid } = req.params;
     try {
-        const followings = await Following.find({ follower: followerid}).populate("followee");
+        const followings = await Following.find({ follower: followerid }).populate("followee");
         res.status(200).json(followings);
     } catch (err) {
         res.status(500).json({ message: "Error retrieving followings" });
@@ -28,9 +28,9 @@ const getFollowings = async (req, res) => {
 }
 
 const getFollowers = async (req, res) => {
-    const {followeeid} = req.params;
+    const { followeeid } = req.params;
     try {
-        const followers = await Following.find({ followee: followeeid}).populate("follower");
+        const followers = await Following.find({ followee: followeeid }).populate("follower");
         res.status(200).json(followers);
     } catch (err) {
         res.status(500).json({ message: "Error retrieving followings" });
@@ -39,8 +39,6 @@ const getFollowers = async (req, res) => {
 
 const updateFollowing = async (req, res) => {
     const { followerid, followeeid } = req.params;
-    console.log(followerid);
-    console.log(followeeid);
     try {
         const isFollowing = await Following.findOne({ follower: followerid, followee: followeeid });
         if (isFollowing) {

@@ -15,7 +15,7 @@ import mongoose from 'mongoose';
 
 dotenv.config();
 const corsOptions = {
-  origin: process.env.REACT_APP,
+  origin: ["https://master--regal-dodol-1248b1.netlify.app"],
   credentials: true,            //access-control-allow-credentials:true
   optionSuccessStatus: 200
 }
